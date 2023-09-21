@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #3f3d56;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .button {
+            background-color: #8a67ab;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        #copyInfo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            animation: fadeInOut 2s ease-in-out;
+            display: none;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="copyToClipboard()">Jeżeli chcesz taki template to kliknij mnie aby skopiować link do CODEPEN</button>
+
+    <script>
+        function copyToClipboard() {
+            // Tekst do skopiowania
+            const textToCopy = "https://codepen.io/yagoonek-yagoonek/pen/gOZodMM";
+
+            // Tworzenie ukrytego elementu input, aby skopiować tekst do schowka
+            const input = document.createElement("input");
+            input.setAttribute("value", textToCopy);
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+
+            // Wyświetlanie informacji o skopiowaniu
+            const copyInfo = document.getElementById("copyInfo");
+            copyInfo.style.display = "block";
+
+            // Ukrycie informacji po 2 sekundach
+            setTimeout(function() {
+                copyInfo.style.display = "none";
+            }, 2000);
+        }
+    </script>
+
+    <!-- Czarna animacja na dole ekranu -->
+    <div id="copyInfo">Skopiowano kod do schowka!</div>
+</body>
+</html>
